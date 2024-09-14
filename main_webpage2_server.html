@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Nest</title>
+    <link rel="icon" href="website logo.jpeg" type="image/x-icon">
+	
+
+    <style>
+        body {
+            background-image: url("main webpage background 3(server version).jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .blur-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 0, 50, 0.7), rgba(0, 50, 150, 0.7));
+            z-index: -1;
+        }
+
+        /* Header section with logo */
+        .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: linear-gradient(45deg, rgba(0, 0, 50, 0.9), rgba(0, 50, 150, 0.9));
+    border-bottom: 3px solid #30a8f6;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.header img {
+    height: 60px;
+    transition: transform 0.3s;
+}
+.header img:hover {
+    transform: scale(1.1);
+}
+
+      .header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 20px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+        .header nav a:hover {
+    color: #30a8f6;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+.header nav a.active {
+    color: #30a8f6;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 55px;
+            margin: 80px 0 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            font-family: 'Arial Black', Arial, sans-serif;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #30a8f6, #1f7bb5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .intro-text p {
+            color: #ccc;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .overlay {
+            background: rgba(6, 93, 150, 0.6);
+            padding: 40px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 1000px;
+            margin: 40px auto;
+            border: 2px solid #30a8f6;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            opacity: 1;
+        }
+
+        /* Card layout for institute links */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            margin: 15px;
+            width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, background-color 0.3s;
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .card a {
+            color: yellow;
+            font-size: 18px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .search-container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+            outline: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            opacity: 1;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            fill: #ccc;
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: #fff;
+            background-color: #30a8f6;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, box-shadow 0.3s;
+            opacity: 1;
+        }
+
+        .button:hover {
+            background-color: #1f7bb5;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        footer {
+            text-align: center;
+            color: #80b0ff;
+            margin: 40px 0 20px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        /* New page styles */
+        .page-content {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            opacity: 1;
+        }
+
+        .page-content h2 {
+            color: #30a8f6;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .page-content p {
+            color: #ccc;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+
+        .fade-out {
+            animation: fadeOut 2s ease-out;
+        }
+
+        /* Navigation Active State */
+        .nav-link.active {
+            color: #30a8f6;
+            font-weight: bold;
+        }
+	
+
+
+    </style>
+</head>
+<body>
+    <div class="blur-overlay"></div>
+
+    <!-- Header Section -->
+    <div class="header fade-in">
+        <img src="website logo.jpeg" alt="Website Logo">
+        <nav>
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </div>
+
+    <h1 class="fade-in">Yearly Nest</h1>
+
+    <div class="intro-text fade-in">
+        <h2>Welcome to Yearly Nest</h2>
+        <p>Your one-stop solution for educational institutes to manage and generate their annual reports efficiently. Yearly Nest streamlines the process, ensuring accuracy, compliance, and collaboration between departments.</p>
+        <p>Browse through our list of registered institutes or use the search bar to find a specific institute. Each institute has its own dedicated profile, accessible through secure login.</p>
+    </div>
+
+    <div class="search-container fade-in">
+        <input type="text" id="search-bar" class="search-bar" placeholder="Search Institutes...">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M10 2a8 8 0 105.27 14.29l5.48 5.48a1 1 0 001.42-1.42l-5.48-5.48A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"></path>
+        </svg>
+    </div>
+
+    <div class="overlay fade-in" id="home">
+        <div class="card-container">
+            <div class="card">
+                <a href="http://institute1.example.com" target="_blank">Jadavpur University</a>
+            </div>
+            <div class="card">
+                <a href="login page university of calcutta duplicate (server version).html" target="_blank">University of Calcutta</a>
+            </div>
+            <div class="card">
+                <a href="http://institute3.example.com" target="_blank">Indian Institute of Technology Kharagpur</a>
+            </div>
+            <div class="card">
+                <a href="http://institute3.example.com" target="_blank">Indian Institute of Technology Bombay</a>
+            </div>
+            <div class="card">
+                <a href="http://institute3.example.com" target="_blank">Indian Institute of Technology Madras</a>
+            </div>
+            <div class="card">
+                <a href="http://institute3.example.com" target="_blank">National Institute of Technology Jamshedpur</a>
+            </div>
+            <div class="card">
+                <a href="http://institute3.example.com" target="_blank">Indian Institute of Technology Durgapur</a>
+            </div>
+        </div>
+        <a href="#contact" class="button">Details Of Institutes</a>
+    </div>
+
+    <!-- New Page Sections -->
+    <div class="page-content" id="about">
+        <h2>About Us</h2>
+        <p>Yearly Nest was created to revolutionize the way educational institutions handle their annual reporting. Our mission is to provide a user-friendly platform that simplifies data management and enhances the efficiency of report generation.</p>
+        <p>We believe in the power of technology to transform traditional processes and are committed to delivering innovative solutions that meet the needs of our clients.</p>
+    </div>
+
+    <div class="page-content" id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need assistance, feel free to reach out to us. You can contact us via email at support@yearlynest.com or call us at (123) 456-7890.</p>
+        <p>Our team is always here to help and ensure that you have the best experience with Yearly Nest.</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Yearly Nest. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('search-bar').addEventListener('input', function() {
+            var searchTerm = this.value.toLowerCase();
+            var cards = document.querySelectorAll('.card');
+            
+            cards.forEach(function(card) {
+                var cardText = card.textContent.toLowerCase();
+                if (cardText.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

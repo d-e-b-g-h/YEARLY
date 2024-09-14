@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yearly Nest</title>
+    <link rel="icon" href="website logo.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css"> <!-- Add a separate CSS file for styles -->
+</head>
+<body>
+    <div class="blur-overlay"></div> <!-- Added blur overlay -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <h1>Yearly Nest</h1>
+    </header>
+    <main>
+        <section class="hero">
+            <h2>Welcome to Yearly Nest</h2>
+            <p>Your one-stop solution for educational institutes to manage and generate their annual reports efficiently.</p>
+            <button class="btn">Learn More</button>
+        </section>
+        <section class="search">
+            <h2>Search Institutes</h2>
+            <input type="text" id="search-bar" class="search-bar" placeholder="Search Institutes...">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M10 2a8 8 0 105.27 14.29l5.48 5.48a1 1 0 001.42-1.42l-5.48-5.48A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"></path>
+            </svg>
+            <ul id="institutes-list">
+                <li><a href="login page university of calcutta duplicate (server version).html" class="custom-link">University of Calcutta</a></li>
+                <li><a href="url" class="custom-link">Indian Institute of Technology Kharagpur</a></li>
+                <li><a href="url" class="custom-link">Indian Institute of Technology Madras</a></li>
+                <li><a href="url" class="custom-link">Jadavpur University</a></li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>Yearly Nest © 2024. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Add a separate JavaScript file for scripts -->
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome CDN -->
+	
+	
+    <style>
+        /* Base styles */
+        body {
+		
+            font-family: 'Roboto', sans-serif;
+            background: url("university of calcutta login page background(server version).jpg") no-repeat center center fixed; /* Preserve existing background image */
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Blur overlay */
+        .blur-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px); /* Apply blur effect */
+            background: rgba(0, 0, 50, 0.4); /* Semi-transparent background for overlay */
+            z-index: 0; /* Ensure it's above the background but below the content */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Login form container */
+        .login-container {
+            background: rgba(43, 43, 43, 0.9); /* Dark grey with slight transparency */
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            color: #ffffff;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            z-index: 1; /* Ensure it's above the overlay */
+        }
+
+        /* Improve heading style */
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px; /* Adds spacing between letters */
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4CAF50; /* Use green accent */
+        }
+
+        /* Form field styles */
+        .form-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+		
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 15px; /* Adjust padding to fit icons */
+            padding-left: 40px; /* Space for icons */
+            border: 1px solid #444; /* Subtle border */
+            border-radius: 8px;
+            background: #333; /* Dark grey background for inputs */
+            color: #ffffff;
+            box-sizing: border-box; /* Ensure padding is included in the width */
+			transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #ffffff; /* White border on focus */
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+            outline: none;
+        }
+
+        .form-group i {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(0%);
+            color: #ffffff;
+        }
+
+        /* Button styles */
+        .btn {
+            background: linear-gradient(45deg, #4CAF50, #008CBA); /* Gradient background */
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #1e9ce5, #5c9aff);
+			 box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Link styles */
+        .link {
+            display: block;
+            text-align: center;
+            color: #ffffff;
+            margin-top: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+            color: #4CAF50;
+        }
+		.logo {
+    position: absolute;
+    top: 20px; /* Adjust the positioning */
+    left: 20px; /* Adjust the positioning */
+    width: 100px; /* Set a width for the logo */
+    z-index: 2; /* Ensure the logo is above the blur overlay */
+}
+
+    </style>
+    <script>
+        function validateLogin() {
+            var userid = document.getElementById("userid").value;
+            var pass = document.getElementById("pass").value;
+
+            fetch('https://script.google.com/macros/s/AKfycbw-pJXeIOezFRog64pwbae-Kw5qNt8uWS1zho_pWV-00G-2f-r7qux_hvFMyPAxd7DU/exec?userid=' + encodeURIComponent(userid) + '&password=' + encodeURIComponent(pass))
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+						document.getElementById("userid").value="";
+						document.getElementById("pass").value="";
+                        window.open("student portal duplicate(server version).html", "_blank");
+
+                    } else {
+						
+                        alert("Invalid credentials! Please try again.");
+						document.getElementById("userid").value="";
+						document.getElementById("pass").value="";
+						
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+            return false; // Prevent form submission
+        }
+    </script>
+</head>
+
+<body>
+	<img src="culogo.png" alt="University Logo" class="logo">
+
+
+    <div class="blur-overlay"></div> <!-- Blur overlay added here -->
+    
+    <div class="login-container">
+        <h1>University Login</h1>
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <div class="form-group">
+                <i class="fas fa-user"></i> <!-- Font Awesome user icon -->
+                <label for="userid">User ID</label>
+                <input type="text" id="userid" name="userid" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock"></i> <!-- Font Awesome lock icon -->
+                <label for="pass">Password</label>
+                <input type="password" id="pass" name="pass" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <a href="#" class="link">Forgot Password?</a>
+            <a href="#" class="link">Sign Up</a>
+        </form>
+    </div>
+</body>
+</html>

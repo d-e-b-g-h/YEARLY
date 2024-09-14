@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #eaeaea;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main container for layout */
+        .container {
+            padding: 20px;
+        }
+
+        /* Heading styles */
+        h2 {
+            color: #eaeaea;
+            border-bottom: 2px solid #555; /* Light grey border for cleaner separation */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #3a3a3a;
+            border-bottom: 2px solid #555; /* Light grey border for cleaner separation */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Table styles for attendance */
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background-color: #2b2b2b; /* Dark grey background for contrast */
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .attendance-table th, .attendance-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444; /* Subtle grey border */
+        }
+
+        .attendance-table th {
+            background-color: #3a3a3a; /* Medium grey for table header */
+            color: #3a3a3a; /* Light grey text */
+        }
+
+        .attendance-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05); /* Subtle hover effect */
+        }
+
+        /* Attendance summary section */
+        .summary-section {
+            margin-bottom: 40px;
+        }
+
+        .summary-list {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .summary-item {
+            background-color: #2e2e2e;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 23%;
+            box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .summary-item:hover {
+            background-color: #3b3b3b; /* Slight hover effect to add depth */
+        }
+
+        .summary-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #fff;
+        }
+
+        .summary-item p {
+            margin: 5px 0;
+            font-size: 1.2em;
+            color: #c0c0c0; /* Light grey for attendance values */
+        }
+
+        /* Analytics graph container */
+        .graph-container {
+            background-color: #2a2a2a; /* Dark grey background for graph */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+        }
+        .attendancetrend {
+            color: #ffff; /* Coral color for Attendance Trend */
+        }
+        
+        .sem {
+            color: #3a3a3a; /* Coral color for Semester-wise Attendance */
+        }
+
+        /* Canvas styles for chart */
+        canvas {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: auto;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .summary-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .summary-item {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+		
+		footer {
+            text-align: center;
+			color: #82706c;
+			
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+</head>
+
+<body>
+    <div class="container">
+        <!-- Attendance section -->
+        <h1>Attendance Report</h1>
+
+        <!-- Attendance table -->
+        <table class="attendance-table">
+            <thead>
+                <tr>
+                    <th>Semester</th>
+                    <th>Course Code</th>
+                    <th>Course Name</th>
+                    <th>Total Classes</th>
+                    <th>Classes Attended</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Semester 1</td>
+                    <td>CS101</td>
+                    <td>Introduction to Computer Science</td>
+                    <td>30</td>
+                    <td>28</td>
+                    <td>93.3%</td>
+                </tr>
+                <tr>
+                    <td>Semester 1</td>
+                    <td>MATH102</td>
+                    <td>Calculus I</td>
+                    <td>32</td>
+                    <td>30</td>
+                    <td>93.8%</td>
+                </tr>
+                <tr>
+                    <td>Semester 2</td>
+                    <td>CS202</td>
+                    <td>Data Structures</td>
+                    <td>28</td>
+                    <td>24</td>
+                    <td>85.7%</td>
+                </tr>
+                <tr>
+                    <td>Semester 2</td>
+                    <td>STAT201</td>
+                    <td>Probability and Statistics</td>
+                    <td>30</td>
+                    <td>26</td>
+                    <td>86.7%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Attendance summary section -->
+        <div class="summary-section">
+            <h2>
+                <span class="sem">Semester-wise Attendance Summary</span>
+            </h2>
+            <div class="summary-list">
+                <div class="summary-item">
+                    <h3>Semester 1</h3>
+                    <p>93.6%</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Semester 2</h3>
+                    <p>86.2%</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Semester 3</h3>
+                    <p>91.5%</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Semester 4</h3>
+                    <p>88.0%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics graph section -->
+        <div class="graph-container">
+            <h2>
+                <span class="attendancetrend">Overall Attendance Trend (Bar Chart)</span>
+            </h2>
+            <canvas id="attendanceGraph"></canvas> <!-- Canvas element for Chart.js -->
+        </div>
+    </div>
+
+    <!-- Chart.js script for Attendance trend -->
+    <script>
+        const ctx = document.getElementById('attendanceGraph').getContext('2d');
+        const attendanceGraph = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Semester 1', 'Semester 2', 'Semester 3', 'Semester 4'], // Semesters
+                datasets: [{
+                    label: 'Attendance Trend',
+                    data: [93.6, 86.2, 91.5, 88.0], // Attendance percentages for each semester
+                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                    borderColor: '#fff', /* White border for bars */
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        grid: {
+                            color: '#555' // Medium grey grid color for contrast
+                        },
+                        ticks: {
+                            color: '#fff' // White text for X-axis
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#555' // Medium grey grid color for contrast
+                        },
+                        ticks: {
+                            color: '#fff' // White text for Y-axis
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+	<footer>
+        &copy; 2024 Yearly Nest. All rights reserved.
+    </footer>
+</body>
+</html>

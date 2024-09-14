@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give Feedback</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling on body to keep blur effect contained */
+            color: #fff;
+            position: relative;
+            height: 100vh;
+        }
+
+        /* Background overlay */
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("feedback page background server.png");
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px); /* Adjust blur intensity as needed */
+            z-index: -1; /* Place background behind other content */
+        }
+
+        /* Container for content */
+        .container {
+            position: relative;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background to make the container stand out */
+            border-radius: 10px;
+            z-index: 1; /* Ensure content is above the background */
+            max-height: calc(100vh - 40px); /* Ensure container fits within viewport height */
+            overflow-y: auto; /* Allow scrolling if content overflows */
+        }
+
+        /* Overlay for the heading */
+        h1 {
+            position: relative;
+            color: #fff;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        h1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Black overlay with opacity */
+            z-index: -1; /* Place overlay behind the text */
+        }
+
+        /* Heading styles */
+        h2 {
+            color: #3a3a3a;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Tile view section for feedback categories */
+        .feedback-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .feedback-tile {
+            background-color: #2b2b2b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .feedback-tile:hover {
+            background-color: #3a3a3a;
+        }
+
+        .feedback-tile h3 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .feedback-tile p {
+            color: #c0c0c0;
+        }
+
+        /* Feedback form styles */
+        .feedback-form {
+            background-color: #2b2b2b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+        }
+
+        .feedback-form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #fff;
+            font-size: 1.1em;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea,
+        .feedback-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #3a3a3a;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1em;
+        }
+
+        .feedback-form input:focus,
+        .feedback-form textarea:focus,
+        .feedback-form select:focus {
+            background-color: #444;
+            outline: none;
+        }
+
+        /* Submit button */
+        .feedback-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        .feedback-form button:hover {
+            background-color: #777;
+        }
+
+        /* Feedback message */
+        .feedback-message {
+            text-align: center;
+            font-size: 1.2em;
+            color: #c0c0c0;
+            margin-top: 20px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .feedback-form {
+                width: 100%;
+            }
+        }
+		.feed {
+			color: #fff;
+		}
+    </style>
+</head>
+<body>
+    <!-- Background overlay -->
+    <div class="background-overlay"></div>
+    
+    <div class="container">
+        <!-- Feedback heading -->
+        <h1>Give Feedback</h1>
+
+        <!-- Tile view for feedback categories -->
+        <div class="feedback-sections">
+            <div class="feedback-tile" onclick="openForm('course')">
+                <h3>Course Feedback</h3>
+                <p>Give feedback about the courses you've taken.</p>
+            </div>
+            <div class="feedback-tile" onclick="openForm('faculty')">
+                <h3>Faculty Feedback</h3>
+                <p>Share your thoughts about the teaching staff.</p>
+            </div>
+            <div class="feedback-tile" onclick="openForm('facilities')">
+                <h3>Facilities Feedback</h3>
+                <p>Comment on the campus facilities (library, labs, etc.).</p>
+            </div>
+            <div class="feedback-tile" onclick="openForm('general')">
+                <h3>General Feedback</h3>
+                <p>Provide any other suggestions or concerns.</p>
+            </div>
+        </div>
+
+        <!-- Feedback form (initially hidden, revealed upon tile click) -->
+        <div class="feedback-form" id="feedback-form">
+            <h2 id="form-title" class="feed">Course Feedback</h2>
+            <form action="#">
+                <!-- Dynamic form content based on section -->
+                <label for="course">Course</label>
+                <select id="course" name="course">
+                    <option value="CS101">Introduction to Computer Science</option>
+                    <option value="MATH102">Calculus I</option>
+                    <option value="CS202">Data Structures</option>
+                    <option value="STAT201">Probability and Statistics</option>
+                </select>
+
+                <label for="feedback">Your Feedback</label>
+                <textarea id="feedback" name="feedback" rows="6" placeholder="Write your feedback here..." required></textarea>
+
+                <label for="rating">Rating</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" placeholder="Rate the course out of 5" required>
+
+                <button type="submit">Submit Feedback</button>
+            </form>
+
+            <p class="feedback-message">Thank you for your feedback!</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to change the form based on the selected feedback section
+        function openForm(section) {
+            const formTitle = document.getElementById('form-title');
+            const courseField = document.getElementById('course');
+            
+            if (section === 'course') {
+                formTitle.innerText = 'Course Feedback';
+                courseField.style.display = 'block';
+            } else if (section === 'faculty') {
+                formTitle.innerText = 'Faculty Feedback';
+                courseField.style.display = 'none';
+            } else if (section === 'facilities') {
+                formTitle.innerText = 'Facilities Feedback';
+                courseField.style.display = 'none';
+            } else {
+                formTitle.innerText = 'General Feedback';
+                courseField.style.display = 'none';
+            }
+
+            // Scroll to form
+            document.getElementById('feedback-form').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
